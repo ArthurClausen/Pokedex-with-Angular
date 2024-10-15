@@ -6,7 +6,7 @@ import { lastValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class PokemonService {
-  pokemons = [];
+  pokemons: any[] = [];
 
   constructor(private httpClient: HttpClient) {
     this.carregarPokemons();
@@ -16,6 +16,7 @@ export class PokemonService {
     const requisicao = await lastValueFrom(
       this.httpClient.get<any>('https://pokeapi.co/api/v2/pokemon?limit=151')
     );
+
     this.pokemons = requisicao.results;
   }
 }
